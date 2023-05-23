@@ -1,0 +1,65 @@
+{
+  "name": "pkg-name",
+  "type": "module",
+  "version": "0.1.0-beta.0",
+  "packageManager": "pnpm@7.18.0",
+  "description": "",
+  "author": "Eiog",
+  "license": "MIT",
+  "homepage": "https://github.com/Eiog/tsup-starter",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Eiog/tsup-starter.git"
+  },
+  "bugs": "https://github.com/Eiog/tsup-starter/issues",
+  "keywords": [
+    "tsup-starter"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsc && tsup",
+    "unbuild": "tsc && unbuild",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prepublishOnly": "pnpm build",
+    "release": "bumpp && npm publish",
+    "start": "esno src/index.ts",
+    "test": "vitest",
+    "update-deps": "taze -w && pnpm i",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@eiog/eslint-config-ts": "^0.0.1",
+    "bumpp": "^9.1.0",
+    "eslint": "^8.41.0",
+    "esno": "^0.16.3",
+    "taze": "^0.10.1",
+    "tsup": "6.7.0",
+    "typescript": "^5.0.4",
+    "unbuild": "^1.2.1",
+    "vitest": "^0.31.1"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged":{
+    "*.{js,jsx,ts,tsx}":[
+      "eslint . --fix",
+      "git add"
+    ]
+  }
+}
