@@ -5,20 +5,20 @@
  * @returns string
  * capitalize("hello world")  // Hello world
  */
-export const capitalize = (str: string): string => str.charAt(0).toUpperCase() + str.slice(1)
+const capitalize = (str: string): string => str.charAt(0).toUpperCase() + str.slice(1)
 /**
  * 翻转字符串
  * 该方法用于将一个字符串进行翻转操作，返回翻转后的字符串：
  * @param str string
  * @returns string
  */
-export const reverse = (str: string): string => str.split('').reverse().join('')
+const reverse = (str: string): string => str.split('').reverse().join('')
 /**
  * 随机字符串
  * 该方法用于生成一个随机的字符串：
  * @returns string
  */
-export const randomString = (): string => Math.random().toString(36).slice(2)
+const randomString = (): string => Math.random().toString(36).slice(2)
 /**
  * 截断字符串
  * 该方法可以从指定长度处截断字符串:
@@ -26,10 +26,18 @@ export const randomString = (): string => Math.random().toString(36).slice(2)
  * @param length number
  * @returns string
  */
-export const truncateString = (string: string, length: number): string => string.length < length ? string : `${string.slice(0, length - 3)}...`
+const truncateString = (string: string, length: number): string => string.length < length ? string : `${string.slice(0, length - 3)}...`
 /**
  * 去除字符串中的HTML
  * @param html string
  * @returns string
  */
-export const stripHtml = (html: string): string => (new DOMParser().parseFromString(html, 'text/html')).body.textContent || ''
+const stripHtml = (html: string): string => (new DOMParser().parseFromString(html, 'text/html')).body.textContent || ''
+export const string = {
+  capitalize,
+  reverse,
+  randomString,
+  truncateString,
+  stripHtml,
+
+}

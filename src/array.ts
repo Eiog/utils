@@ -5,7 +5,7 @@
  * @param key keyof T
  * @returns Record<string, T>
  */
-export const toObject = <T extends Record<string, any>, K extends keyof T>(arr: T[], key: K): Record<string, T> => arr.reduce((a, b) => ({ ...a, [b[key]]: b }), {})
+const toObject = <T extends Record<string, any>, K extends keyof T>(arr: T[], key: K): Record<string, T> => arr.reduce((a, b) => ({ ...a, [b[key]]: b }), {})
 
 /**
  * 2.isEqual 比较两个数组，不考虑顺序
@@ -14,7 +14,7 @@ export const toObject = <T extends Record<string, any>, K extends keyof T>(arr: 
  * @param b T[]
  * @returns boolean
  */
-export const isEqual = <T, _>(a: T[], b: T[]): boolean => JSON.stringify([...(new Set(a))].sort()) === JSON.stringify([...(new Set(b))].sort())
+const isEqual = <T, _>(a: T[], b: T[]): boolean => JSON.stringify([...(new Set(a))].sort()) === JSON.stringify([...(new Set(b))].sort())
 
 /**
  * 3.countOccurrences 计算数组中值的出现次数
@@ -23,7 +23,7 @@ export const isEqual = <T, _>(a: T[], b: T[]): boolean => JSON.stringify([...(ne
  * @param val T
  * @returns number
  */
-export const countOccurrences = <T, _>(arr: T[], val: T): number => arr.reduce((a, v) => (v === val ? a + 1 : a), 0)
+const countOccurrences = <T, _>(arr: T[], val: T): number => arr.reduce((a, v) => (v === val ? a + 1 : a), 0)
 
 /**
  * 4.range 在给定范围内创建数字数组
@@ -32,7 +32,7 @@ export const countOccurrences = <T, _>(arr: T[], val: T): number => arr.reduce((
  * @param max number
  * @returns number[]
  */
-export const range = (min: number, max: number): number[] => [...Array(max - min + 1).keys()].map(i => i + min)
+const range = (min: number, max: number): number[] => [...Array(max - min + 1).keys()].map(i => i + min)
 
 /**
  * 5.empty 清空数组
@@ -40,7 +40,7 @@ export const range = (min: number, max: number): number[] => [...Array(max - min
  * @param arr T[]
  * @returns
  */
-export const empty = <T, _>(arr: T[]) => (arr.length = 0)
+const empty = <T, _>(arr: T[]) => (arr.length = 0)
 
 /**
  * 6.accumulate 创建累积总和数组
@@ -48,7 +48,7 @@ export const empty = <T, _>(arr: T[]) => (arr.length = 0)
  * @param arr number[]
  * @returns number
  */
-export const accumulate = (arr: number[]): number[] => arr.reduce((a, b, i) => (i === 0 ? [b] : [...a, b + a[i - 1]]), [0])
+const accumulate = (arr: number[]): number[] => arr.reduce((a, b, i) => (i === 0 ? [b] : [...a, b + a[i - 1]]), [0])
 
 /**
  * 7.toNumbers 将字符串数组转换为数字
@@ -56,7 +56,7 @@ export const accumulate = (arr: number[]): number[] => arr.reduce((a, b, i) => (
  * @param arr string[]
  * @returns number[]
  */
-export const toNumbers = (arr: string[]): number[] => arr.map(Number)
+const toNumbers = (arr: string[]): number[] => arr.map(Number)
 
 /**
  * 8.cartesian 创建笛卡尔乘积
@@ -64,7 +64,7 @@ export const toNumbers = (arr: string[]): number[] => arr.map(Number)
  * @param sets number[][]
  * @returns number[][]
  */
-export const cartesian = (...sets: number[][]) => sets.reduce((acc, set) => acc.flatMap(x => set.map(y => [...x, y])), [[]] as number[][])
+const cartesian = (...sets: number[][]) => sets.reduce((acc, set) => acc.flatMap(x => set.map(y => [...x, y])), [[]] as number[][])
 
 /**
  * 9.countBy 按对象数组的属性计数
@@ -74,7 +74,7 @@ export const cartesian = (...sets: number[][]) => sets.reduce((acc, set) => acc.
  * @returns T
  */
 // eslint-disable-next-line no-sequences
-export const countBy = <T extends Record<string, string>, K extends keyof T>(arr: T[], prop: K): Record<string, number> => arr.reduce((prev, curr) => ((prev[curr[prop]] = ++prev[curr[prop]] || 1), prev), {} as Record<string, number>)
+const countBy = <T extends Record<string, string>, K extends keyof T>(arr: T[], prop: K): Record<string, number> => arr.reduce((prev, curr) => ((prev[curr[prop]] = ++prev[curr[prop]] || 1), prev), {} as Record<string, number>)
 
 /**
  * 10.lastIndex 查找数组中最后一个匹配项的索引
@@ -83,7 +83,7 @@ export const countBy = <T extends Record<string, string>, K extends keyof T>(arr
  * @param predicate (a: T) => boolean
  * @returns number
  */
-export const lastIndex = <T, _>(arr: T[], predicate: (a: T) => boolean): number => arr.reduce((prev, curr, index) => (predicate(curr) ? index : prev), -1)
+const lastIndex = <T, _>(arr: T[], predicate: (a: T) => boolean): number => arr.reduce((prev, curr, index) => (predicate(curr) ? index : prev), -1)
 
 /**
  * 11.indexOfMin 查找数组最小项的索引
@@ -91,7 +91,7 @@ export const lastIndex = <T, _>(arr: T[], predicate: (a: T) => boolean): number 
  * @param arr number[]
  * @returns number
  */
-export const indexOfMin = (arr: number[]): number => arr.reduce((prev, curr, i, a) => (curr < a[prev] ? i : prev), 0)
+const indexOfMin = (arr: number[]): number => arr.reduce((prev, curr, i, a) => (curr < a[prev] ? i : prev), 0)
 
 /**
  * 12.findLongest 查找数组中最长字符串的长度
@@ -99,7 +99,7 @@ export const indexOfMin = (arr: number[]): number => arr.reduce((prev, curr, i, 
  * @param words string[]
  * @returns number
  */
-export const findLongest = (words: string[]): number => Math.max(...words.map(el => el.length))
+const findLongest = (words: string[]): number => Math.max(...words.map(el => el.length))
 
 /**
  * 13.minBy 通过给定键查找数组的最小项
@@ -108,7 +108,7 @@ export const findLongest = (words: string[]): number => Math.max(...words.map(el
  * @param key any
  * @returns T
  */
-export const minBy = <T extends Record<string, any>, K extends keyof T>(arr: T[], key: K): T => arr.reduce((a, b) => (a[key] < b[key] ? a : b), {} as T)
+const minBy = <T extends Record<string, any>, K extends keyof T>(arr: T[], key: K): T => arr.reduce((a, b) => (a[key] < b[key] ? a : b), {} as T)
 
 /**
  * 14.indexOfMax 查找数组中最大项的索引
@@ -116,7 +116,7 @@ export const minBy = <T extends Record<string, any>, K extends keyof T>(arr: T[]
  * @param arr number[]
  * @returns number
  */
-export const indexOfMax = (arr: number[]): number => arr.reduce((prev, curr, i, a) => (curr > a[prev] ? i : prev), 0)
+const indexOfMax = (arr: number[]): number => arr.reduce((prev, curr, i, a) => (curr > a[prev] ? i : prev), 0)
 
 /**
  * 15.maxBy 通过给定键查找数组的最大项
@@ -125,7 +125,7 @@ export const indexOfMax = (arr: number[]): number => arr.reduce((prev, curr, i, 
  * @param key any
  * @returns T
  */
-export const maxBy = <T extends Record<string, any>, K extends keyof T>(arr: T[], key: K): T => arr.reduce((a, b) => (a[key] >= b[key] ? a : b), {} as T)
+const maxBy = <T extends Record<string, any>, K extends keyof T>(arr: T[], key: K): T => arr.reduce((a, b) => (a[key] >= b[key] ? a : b), {} as T)
 
 /**
  * 16.min 查找数组的最小项
@@ -133,7 +133,7 @@ export const maxBy = <T extends Record<string, any>, K extends keyof T>(arr: T[]
  * @param arr number[]
  * @returns number
  */
-export const min = (arr: number[]): number => Math.min(...arr)
+const min = (arr: number[]): number => Math.min(...arr)
 
 /**
  * 17.flat 平展数组
@@ -141,7 +141,7 @@ export const min = (arr: number[]): number => Math.min(...arr)
  * @param arr T[]
  * @returns T[]
  */
-export const flat = <T = string | string[]>(arr: T[]): T[] => arr.reduce((a, b) => (Array.isArray(b) ? [...a, ...flat(b)] : [...a, b]), [] as T[])
+const flat = <T = string | string[]>(arr: T[]): T[] => arr.reduce((a, b) => (Array.isArray(b) ? [...a, ...flat(b)] : [...a, b]), [] as T[])
 
 /**
  * 18.getConsecutiveArrays 获取连续元素的所有数组
@@ -150,7 +150,7 @@ export const flat = <T = string | string[]>(arr: T[]): T[] => arr.reduce((a, b) 
  * @param size number
  * @returns T[][]
  */
-export const getConsecutiveArrays = <T, _>(arr: T[], size: number): T[][] => (size > arr.length ? [] : arr.slice(size - 1).map((_, i) => arr.slice(i, size + i)))
+const getConsecutiveArrays = <T, _>(arr: T[], size: number): T[][] => (size > arr.length ? [] : arr.slice(size - 1).map((_, i) => arr.slice(i, size + i)))
 
 /**
  * 19.closest 从数组中查找最接近的数字
@@ -159,7 +159,7 @@ export const getConsecutiveArrays = <T, _>(arr: T[], size: number): T[][] => (si
  * @param n number
  * @returns number
  */
-export const closest = (arr: number[], n: number): number => arr.reduce((prev, curr) => (Math.abs(curr - n) < Math.abs(prev - n) ? curr : prev))
+const closest = (arr: number[], n: number): number => arr.reduce((prev, curr) => (Math.abs(curr - n) < Math.abs(prev - n) ? curr : prev))
 
 /**
  * 20.indices 获取数组中值的索引
@@ -168,7 +168,7 @@ export const closest = (arr: number[], n: number): number => arr.reduce((prev, c
  * @param value T
  * @returns number[]
  */
-export const indices = <T>(arr: T[], value: T): number[] => arr.reduce((acc, v, i) => (v === value ? [...acc, i] : acc), [] as number[])
+const indices = <T>(arr: T[], value: T): number[] => arr.reduce((acc, v, i) => (v === value ? [...acc, i] : acc), [] as number[])
 
 /**
  * 21.max 查找数组的最大项数
@@ -176,7 +176,7 @@ export const indices = <T>(arr: T[], value: T): number[] => arr.reduce((acc, v, 
  * @param arr number[]
  * @returns number
  */
-export const max = (arr: number[]): number => Math.max(...arr)
+const max = (arr: number[]): number => Math.max(...arr)
 
 /**
  * 22.getNthItems 获取数组的所有第 n 项
@@ -185,14 +185,14 @@ export const max = (arr: number[]): number => Math.max(...arr)
  * @param nth number
  * @returns T[]
  */
-export const getNthItems = <T, _>(arr: T[], nth: number): T[] => arr.filter((_, i) => i % nth === nth - 1)
+const getNthItems = <T, _>(arr: T[], nth: number): T[] => arr.filter((_, i) => i % nth === nth - 1)
 
 /**
  * 23.alphabet 生成字母字符数组
  * Generate an array of alphabet characters
  * @returns string[]
  */
-export const alphabet = (): string[] => Array(26).fill(0).map((_, i) => String.fromCharCode(i + 97))
+const alphabet = (): string[] => Array(26).fill(0).map((_, i) => String.fromCharCode(i + 97))
 
 /**
  * 24.average 获取数组的平均值
@@ -200,7 +200,7 @@ export const alphabet = (): string[] => Array(26).fill(0).map((_, i) => String.f
  * @param arr number[]
  * @returns number
  */
-export const average = (arr: number[]): number => arr.reduce((a, b) => a + b, 0) / arr.length
+const average = (arr: number[]): number => arr.reduce((a, b) => a + b, 0) / arr.length
 
 /**
  * 25.getIntersection 获取数组的交集
@@ -209,7 +209,7 @@ export const average = (arr: number[]): number => arr.reduce((a, b) => a + b, 0)
  * @param arr T[][]
  * @returns T[]
  */
-export const getIntersection = <T, _>(a: T[], ...arr: T[][]): T[] => [...new Set(a)].filter(v => arr.every(b => b.includes(v)))
+const getIntersection = <T, _>(a: T[], ...arr: T[][]): T[] => [...new Set(a)].filter(v => arr.every(b => b.includes(v)))
 
 /**
  * 26.getSubsets 获取数组的所有子集
@@ -217,7 +217,7 @@ export const getIntersection = <T, _>(a: T[], ...arr: T[][]): T[] => [...new Set
  * @param arr T[]
  * @returns t[][]
  */
-export const getSubsets = <T>(arr: T[]): T[][] => arr.reduce((prev, curr) => prev.concat(prev.map(k => k.concat(curr))), [[]] as T[][])
+const getSubsets = <T>(arr: T[]): T[][] => arr.reduce((prev, curr) => prev.concat(prev.map(k => k.concat(curr))), [[]] as T[][])
 
 /**
  * 27.ranking 获取数字数组的排名
@@ -225,7 +225,7 @@ export const getSubsets = <T>(arr: T[]): T[][] => arr.reduce((prev, curr) => pre
  * @param arr number[]
  * @returns number
  */
-export const ranking = (arr: number[]): number[] => arr.map((x, y, z) => z.filter(w => w > x).length + 1)
+const ranking = (arr: number[]): number[] => arr.map((x, y, z) => z.filter(w => w > x).length + 1)
 
 /**
  * 28.unique 获取数组的唯一值
@@ -233,7 +233,7 @@ export const ranking = (arr: number[]): number[] => arr.map((x, y, z) => z.filte
  * @param arr T[]
  * @returns T[]
  */
-export const unique = <T>(arr: T[]): T[] => arr.reduce((acc, el) => (acc.includes(el) ? acc : [...acc, el]), [] as T[])
+const unique = <T>(arr: T[]): T[] => arr.reduce((acc, el) => (acc.includes(el) ? acc : [...acc, el]), [] as T[])
 
 /**
  * 29.sum 获取数字数组的总和
@@ -241,7 +241,7 @@ export const unique = <T>(arr: T[]): T[] => arr.reduce((acc, el) => (acc.include
  * @param arr T[]
  * @returns number
  */
-export const sum = (arr: number[]): number => arr.reduce((a, b) => a + b, 0)
+const sum = (arr: number[]): number => arr.reduce((a, b) => a + b, 0)
 
 /**
  * 30.union 获取数组的联合
@@ -249,7 +249,7 @@ export const sum = (arr: number[]): number => arr.reduce((a, b) => a + b, 0)
  * @param arr T[]
  * @returns T[]
  */
-export const union = <T, _>(...arr: T[][]): T[] => [...new Set(arr.flat())]
+const union = <T, _>(...arr: T[][]): T[] => [...new Set(arr.flat())]
 
 /**
  * 31.groupBy 按键对对象数组进行分组
@@ -259,7 +259,7 @@ export const union = <T, _>(...arr: T[][]): T[] => [...new Set(arr.flat())]
  * @returns Record<string, T[]
  */
 // eslint-disable-next-line no-sequences
-export const groupBy = <T extends Record<string, any>, K extends keyof T>(arr: T[], key: K): Record<string, T[]> => arr.reduce((acc, item) => ((acc[item[key]] = [...(acc[item[key]] || []), item]), acc), {} as Record<string, T[]>)
+const groupBy = <T extends Record<string, any>, K extends keyof T>(arr: T[], key: K): Record<string, T[]> => arr.reduce((acc, item) => ((acc[item[key]] = [...(acc[item[key]] || []), item]), acc), {} as Record<string, T[]>)
 
 /**
  * 32.intersperse 元素之间穿插元素
@@ -268,7 +268,7 @@ export const groupBy = <T extends Record<string, any>, K extends keyof T>(arr: T
  * @param s T
  * @returns T[]
  */
-export const intersperse = <T>(a: T[], s: T): T[] => [...Array(2 * a.length - 1)].map((_, i) => (i % 2 ? s : a[i / 2]))
+const intersperse = <T>(a: T[], s: T): T[] => [...Array(2 * a.length - 1)].map((_, i) => (i % 2 ? s : a[i / 2]))
 
 /**
  * 33.partition 根据条件对阵列进行分区
@@ -278,7 +278,7 @@ export const intersperse = <T>(a: T[], s: T): T[] => [...Array(2 * a.length - 1)
  * @returns T[][]
  */
 // eslint-disable-next-line no-sequences
-export const partition = <T, _>(arr: T[], criteria: (a: T) => boolean): T[][] => arr.reduce((acc, i) => (acc[criteria(i) ? 0 : 1].push(i), acc), [[], []] as T[][])
+const partition = <T, _>(arr: T[], criteria: (a: T) => boolean): T[][] => arr.reduce((acc, i) => (acc[criteria(i) ? 0 : 1].push(i), acc), [[], []] as T[][])
 
 /**
  * 34.merge 合并两个数组
@@ -288,7 +288,7 @@ export const partition = <T, _>(arr: T[], criteria: (a: T) => boolean): T[][] =>
  * @param d boolean|undefined
  * @returns T[]
  */
-export const merge = <T, _>(a: T[], b: T[], d?: boolean): T[] => d ? [...new Set(a.concat(b))] : a.concat(b)
+const merge = <T, _>(a: T[], b: T[], d?: boolean): T[] => d ? [...new Set(a.concat(b))] : a.concat(b)
 
 /**
  * 35.removeDuplicate 删除数组中的重复值
@@ -296,7 +296,7 @@ export const merge = <T, _>(a: T[], b: T[], d?: boolean): T[] => d ? [...new Set
  * @param arr T[]
  * @returns T[]
  */
-export const removeDuplicate = <T, _>(arr: T[]): T[] => arr.filter(i => arr.indexOf(i) === arr.lastIndexOf(i))
+const removeDuplicate = <T, _>(arr: T[]): T[] => arr.filter(i => arr.indexOf(i) === arr.lastIndexOf(i))
 
 /**
  * 36.repeat 重复一个数组
@@ -305,7 +305,7 @@ export const removeDuplicate = <T, _>(arr: T[]): T[] => arr.filter(i => arr.inde
  * @param n number
  * @returns T[]
  */
-export const repeat = <T, _>(arr: T[], n: number): T[] => Array(n).fill(arr).flat()
+const repeat = <T, _>(arr: T[], n: number): T[] => Array(n).fill(arr).flat()
 
 /**
  * 37.shuffle 随机播放数组
@@ -313,7 +313,7 @@ export const repeat = <T, _>(arr: T[], n: number): T[] => Array(n).fill(arr).fla
  * @param arr T[]
  * @returns T[]
  */
-export const shuffle = <T, _>(arr: T[]): T[] => arr.map(a => ({ sort: Math.random(), value: a })).sort((a, b) => a.sort - b.sort).map(a => a.value)
+const shuffle = <T, _>(arr: T[]): T[] => arr.map(a => ({ sort: Math.random(), value: a })).sort((a, b) => a.sort - b.sort).map(a => a.value)
 
 /**
  * 38.removeFalsy 从数组中删除虚假值
@@ -321,7 +321,7 @@ export const shuffle = <T, _>(arr: T[]): T[] => arr.map(a => ({ sort: Math.rando
  * @param arr T[]
  * @returns T[]
  */
-export const removeFalsy = <T, _>(arr: T[]): T[] => arr.filter(Boolean)
+const removeFalsy = <T, _>(arr: T[]): T[] => arr.filter(Boolean)
 
 /**
  * 39.chunk 将数组拆分为块
@@ -331,7 +331,7 @@ export const removeFalsy = <T, _>(arr: T[]): T[] => arr.filter(Boolean)
  * @returns T[][]
  */
 // eslint-disable-next-line no-sequences
-export const chunk = <T>(arr: T[], size: number): T[][] => arr.reduce((acc, e, i) => (i % size ? acc[acc.length - 1].push(e) : acc.push([e]), acc), [] as T[][])
+const chunk = <T>(arr: T[], size: number): T[][] => arr.reduce((acc, e, i) => (i % size ? acc[acc.length - 1].push(e) : acc.push([e]), acc), [] as T[][])
 
 /**
  * 40.sortBy 按给定键对项目数组进行排序
@@ -340,7 +340,7 @@ export const chunk = <T>(arr: T[], size: number): T[][] => arr.reduce((acc, e, i
  * @param k keyof T
  * @returns T[]
  */
-export const sortBy = <T extends Record<string, any>, K extends keyof T>(arr: T[], k: K): T[] => arr.concat().sort((a, b) => (a[k] > b[k] ? 1 : a[k] < b[k] ? -1 : 0))
+const sortBy = <T extends Record<string, any>, K extends keyof T>(arr: T[], k: K): T[] => arr.concat().sort((a, b) => (a[k] > b[k] ? 1 : a[k] < b[k] ? -1 : 0))
 
 /**
  * 41.transpose 交换矩阵的行和列
@@ -348,4 +348,48 @@ export const sortBy = <T extends Record<string, any>, K extends keyof T>(arr: T[
  * @param matrix T[][]
  * @returns T[][]
  */
-export const transpose = <T>(matrix: T[][]): T[][] => matrix.reduce((prev, next) => next.map((item, i) => (prev[i] || []).concat(next[i])), [] as T[][])
+const transpose = <T>(matrix: T[][]): T[][] => matrix.reduce((prev, next) => next.map((item, i) => (prev[i] || []).concat(next[i])), [] as T[][])
+export const array = {
+  toObject,
+  isEqual,
+  countOccurrences,
+  range,
+  empty,
+  accumulate,
+  toNumbers,
+  cartesian,
+  countBy,
+  lastIndex,
+  indexOfMin,
+  findLongest,
+  minBy,
+  indexOfMax,
+  maxBy,
+  min,
+  flat,
+  getConsecutiveArrays,
+  closest,
+  indices,
+  max,
+  getNthItems,
+  alphabet,
+  average,
+  getIntersection,
+  getSubsets,
+  ranking,
+  unique,
+  sum,
+  union,
+  groupBy,
+  intersperse,
+  partition,
+  merge,
+  removeDuplicate,
+  repeat,
+  shuffle,
+  removeFalsy,
+  chunk,
+  sortBy,
+  transpose,
+
+}

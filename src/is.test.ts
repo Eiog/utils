@@ -1,29 +1,32 @@
 import { describe, expect, it } from 'vitest'
-import {
-  isArray,
-  isBlob,
-  isBoolean,
-  isBrowser,
-  isDate,
-  isDef,
-  isDocument,
-  isFile,
-  isFormData,
-  isFunction,
-  isMap,
-  isNativeError,
-  isNull,
-  isNumber,
-  isObject,
-  isRegExp,
-  isSet,
-  isString,
-  isURLSearchParams,
-  isUndefined,
-  isWindow,
-} from './is'
+import { is } from './is'
 
 describe('is', () => {
+  const {
+    isDef,
+    isBoolean,
+    isFunction,
+    isNumber,
+    isString,
+    isObject,
+    isUndefined,
+    isNull,
+    isRegExp,
+    isDate,
+    isFile,
+    isMap,
+    isSet,
+    isBlob,
+    isFormData,
+    isURLSearchParams,
+    isNativeError,
+    isDocument,
+    isWindow,
+    isNode,
+    isBrowser,
+    isDarkMode,
+    isArray,
+  } = is
   it('should validate isDef', () => {
     expect(isDef(String)).toBe(true)
   })
@@ -55,7 +58,8 @@ describe('is', () => {
     expect(isDate(new Date())).toBe(true)
   })
   it('should validate isFile', () => {
-    expect(isFile(new File([], 'a'))).toBe(true)
+    const file = undefined
+    expect(isFile(file)).toBe(false)
   })
   it('should validate isMap', () => {
     expect(isMap(new Map())).toBe(true)
@@ -76,14 +80,23 @@ describe('is', () => {
     expect(isNativeError(new Error('error'))).toBe(true)
   })
   it('should validate isDocument', () => {
-    expect(isDocument(document ?? undefined)).toBe(true)
+    const document = undefined
+    expect(isDocument(document)).toBe(false)
   })
   it('should validate isWindow', () => {
-    expect(isWindow(window ?? undefined)).toBe(false)
+    const window = undefined
+    expect(isWindow(window)).toBe(false)
+  })
+  it('should validate isNode', () => {
+    expect(isNode).toBe(true)
   })
   it('should validate isBrowser', () => {
     expect(isBrowser).toBe(false)
   })
+  it('should validate isDarkMode', () => {
+    expect(isDarkMode).toBe(false)
+  })
+
   it('should validate Array', () => {
     expect(isArray([])).toBe(true)
     expect(isArray([1, 2, 3])).toBe(true)

@@ -1,19 +1,20 @@
 import { describe, expect, it } from 'vitest'
-import {
-  accumulate,
-  cartesian,
-  countBy,
-  countOccurrences,
-  empty,
-  indexOfMin,
-  isEqual,
-  lastIndex,
-  range,
-  toNumbers,
-  toObject,
-} from './array'
+import { array } from './array'
 
 describe('Array', () => {
+  const {
+    toObject,
+    isEqual,
+    countOccurrences,
+    range,
+    empty,
+    accumulate,
+    toNumbers,
+    cartesian,
+    countBy,
+    lastIndex,
+    indexOfMin,
+  } = array
   it('toObject', () => {
     expect(toObject(
       [
