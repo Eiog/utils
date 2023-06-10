@@ -1,140 +1,47 @@
-/**
- * 1.Check if an element is a descendant of another
- * @param child Node
- * @param parent Node
- * @returns boolean
- */
+/** 检查一个元素是否是另一个元素的后代 */
 const isDescendant = (child: Node, parent: Node): boolean => parent.contains(child)
-/**
- * 2.Initialize the current date but set time to midnight
- * @returns Date
- */
-const midnightOfToday = (): Date => new Date(new Date().setHours(0, 0, 0, 0))
-
-/**
- * 3.Check if the touch events are supported
- * @returns boolean
- */
-function touchSupported(): boolean {
-  return ('ontouchstart' in window || (window as any).DocumentTouch) && document instanceof (window as any).DocumentTouch
-}
-/**
- * 4.Check if an element is focused
- * @param ele Node
- * @returns boolean
- */
+/** 检查是否支持触摸事件 */
+const touchSupported = (): boolean => ('ontouchstart' in window || (window as any).DocumentTouch) && document instanceof (window as any).DocumentTouch
+/** 检查元素是否聚焦 */
 const hasFocus = (ele: Node): boolean => ele === document.activeElement
-
-/**
- * 5.Detect Internet Explorer browser
- * @returns boolean
- */
+/** 检测Internet Explorer浏览器 */
 const isIE = !!(document as any).documentMode
-/**
- * 6.Check if user scrolls to the bottom of the page
- * @returns boolean
- */
+/** 检查用户是否滚动到页面底部 */
 const isAtBottom = (): boolean => document.documentElement.clientHeight + window.scrollY >= document.documentElement.scrollHeight
-/**
- * 7.Detect macOS browser
- * @returns boolean
- */
+/** 检测macOS浏览器 */
 const isMacBrowser: boolean = /Mac|iPod|iPhone|iPad/.test(navigator.platform)
-/**
- * 8.Get all siblings of an element
- * @param ele Node
- * @returns boolean
- */
+/** 获取元素的所有同级 */
 const siblings = (ele: Node): Node[] => (ele.parentNode ? [].slice.call(ele.parentNode.children).filter(child => child !== ele) : [])
-/**
- * 9.Get the position of an element relative to the document
- * @param ele Node
- * @returns object
- */
+/** 获取元素相对于文档的位置 */
 const getPosition = (ele: Element) => ({ left: ele.getBoundingClientRect().left + window.scrollX, top: ele.getBoundingClientRect().top + window.scrollY })
-
-/**
- * 10.Go back to the previous page
- * @returns void
- */
+/** 返回上一页 */
 const goBack = () => history && history.back()
-/**
- * 11.Get the selected text
- * @returns string
- */
+/** 获取所选文本 */
 const getSelectedText = () => window!.getSelection()!.toString()
-/**
- * 12.Hide an element
- * @param ele HTMLElement
- * @returns boolean
- */
+/** 隐藏元素 */
 const hide = (ele: HTMLElement): boolean => (ele.hidden = true)
-/**
- * 13.Insert an element after other one
- * @param ele Element
- * @param anotherEle Element
- * @returns Element|null
- */
+/** 在另一个元素之后插入一个元素 */
 const insertAfter = (ele: Element, anotherEle: Element): Element | null => anotherEle.insertAdjacentElement('afterend', ele)
-/**
- * 14.Insert an element before other one
- * @param ele Element
- * @param anotherEle Element
- * @returns Element|null
- */
+/** 在另一个元素之前插入一个元素 */
 const insertBefore = (ele: Element, anotherEle: Element) => anotherEle.insertAdjacentElement('beforebegin', ele)
-/**
- * 15.Insert given HTML after an element
- * @param html string
- * @param ele Element
- * @returns void
- */
+/** 在元素后插入给定的HTML */
 const insertHtmlAfter = (html: string, ele: Element): void => ele.insertAdjacentHTML('afterend', html)
-/**
- * 16.Insert given HTML before an element
- * @param html string
- * @param ele Element
- * @returns void
- */
+/** .在元素之前插入给定的HTML */
 const insertHtmlBefore = (html: string, ele: Element): void => ele.insertAdjacentHTML('beforebegin', html)
-/**
- * 16.Redirect to another page
- * @param url string
- * @returns string
- */
+/** 重定向到另一页 */
 const goTo = (url: string): string => (location.href = url)
-/**
- * 18.Reload the current page
- * @returns string
- */
+/** 重新加载当前页面 */
 const reload = () => location.reload()
-/**
- * 19.Scroll to top of the page
- * @returns void
- */
+/** 滚动到页面顶部 */
 const goToTop = (): void => window.scrollTo(0, 0)
-/**
- * 20.Toggle an element
- * @param ele HTMLElement
- * @returns boolean
- */
+/** 切换元素 */
 const toggle = (ele: HTMLElement): boolean => (ele.hidden = !ele.hidden)
-/**
- * 21.Strip HTML from a given text
- * @param html string
- * @returns string
- */
+/** 从给定的文本中剥离HTML */
 const stripHtml = (html: string): string => new DOMParser().parseFromString(html, 'text/html').body.textContent || ''
-/**
- * 22.Replace an element
- * @param ele Element
- * @param newEle Element
- * @returns Element|null
- */
+/** 更换元件 */
 const replace = (ele: Element, newEle: Element): Element | null => (ele.parentNode ? ele.parentNode.replaceChild(newEle, ele) : null)
 export const dom = {
   isDescendant,
-  midnightOfToday,
   touchSupported,
   hasFocus,
   isIE,
