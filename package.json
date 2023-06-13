@@ -39,12 +39,12 @@
     "release": "bumpp && npm publish --access public",
     "start": "esno src/index.ts",
     "test": "vitest",
-    "update-deps": "taze -w && pnpm i",
-    "typecheck": "tsc --noEmit",
-    "commit": "git pull && pnpm lint:fix && git add -A && pnpm cz && git push",
-    "pre-commit": "git pull && pnpm lint-staged && pnpm cz && git push",
+    "update:deps": "taze -w && pnpm i",
+    "type:check": "tsc --noEmit",
     "cz": "czg",
-    "prepare": "husky install"
+    "commit":"git pull && git add -A && pnpm cz && git push",
+    "preinstall": "npx only-allow pnpm",
+    "postinstall": "npx simple-git-hooks"
   },
   "dependencies": {
     "throttle-debounce": "^5.0.0"
@@ -59,19 +59,20 @@
     "czg": "^1.6.1",
     "eslint": "^8.41.0",
     "esno": "^0.16.3",
-    "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
+    "simple-git-hooks": "^2.8.1",
     "taze": "^0.10.1",
     "tsup": "6.7.0",
     "typescript": "^5.0.4",
     "unbuild": "^1.2.1",
     "vitest": "^0.31.1"
   },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged && pnpm type:check"
+  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint . --fix",
-      "tsc --noEmit",
-      "git add"
+      "pnpm lint:fix"
     ]
   }
 }

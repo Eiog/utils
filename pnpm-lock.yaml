@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: false
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -35,12 +39,12 @@ importers:
       esno:
         specifier: ^0.16.3
         version: 0.16.3
-      husky:
-        specifier: ^8.0.3
-        version: 8.0.3
       lint-staged:
         specifier: ^13.2.2
         version: 13.2.2
+      simple-git-hooks:
+        specifier: ^2.8.1
+        version: 2.8.1
       taze:
         specifier: ^0.10.1
         version: 0.10.1
@@ -3243,12 +3247,6 @@ packages:
       ms: 2.1.3
     dev: true
 
-  /husky@8.0.3:
-    resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
-    engines: {node: '>=14'}
-    hasBin: true
-    dev: true
-
   /iconv-lite@0.6.3:
     resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
     engines: {node: '>=0.10.0'}
@@ -4991,6 +4989,12 @@ packages:
       tuf-js: 1.1.6
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /simple-git-hooks@2.8.1:
+    resolution: {integrity: sha512-DYpcVR1AGtSfFUNzlBdHrQGPsOhuuEJ/FkmPOOlFysP60AHd3nsEpkGq/QEOdtUyT1Qhk7w9oLmFoMG+75BDog==}
+    hasBin: true
+    requiresBuild: true
     dev: true
 
   /sirv@2.0.3:
